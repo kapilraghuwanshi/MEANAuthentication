@@ -1,0 +1,39 @@
+<ion-header color="danger">
+  <ion-toolbar>
+    <ion-title>
+      Ionic MEAN Sign In
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <form #signInForm="ngForm" (ngSubmit)="signInForm.valid && onSubmit(signInForm)">
+
+    <ion-item>
+      <ion-input type="text" #email="ngModel" [(ngModel)]="loginSubscriber.email" name="email" placeholder="Email"
+        required [pattern]="emailRegex" [ngClass]="{'invalid-textbox' :signInForm.submitted && !email.valid }">
+      </ion-input>
+      <div *ngIf="signInForm.submitted && email.errors?.pattern">
+        <label class="validation-message">Invalid email address.</label>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-input type="password" #password="ngModel" [(ngModel)]="loginSubscriber.password" name="password" placeholder="Password"
+        minlength="4" required [ngClass]="{'invalid-textbox' :signInForm.submitted && !password.valid }">
+      </ion-input>
+      <div *ngIf="signInForm.submitted && password.errors?.minlength">
+        <label class="validation-message">Minimum 4 characters.</label>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-button type="submit" [disabled]="!signInForm.valid">Sign In</ion-button>
+      <ion-button (click)="formReset(signInForm)">Clear</ion-button>
+    </ion-item>
+    <ion-item>{{diagnostic}}</ion-item>
+  </form>
+
+  <!-- Error message -->
+  <div class="alert" *ngIf="serverErrorMessages">
+    {{serverErrorMessages}}
+  </div>
+</ion-content>

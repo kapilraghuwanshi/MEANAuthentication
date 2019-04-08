@@ -1,0 +1,69 @@
+<ion-header color="ion-color-primary">
+  <ion-toolbar>
+    <ion-title>
+      Ionic MEAN CRUD App
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-3>
+        <form #MEANForm="ngForm" (ngSubmit)="onSubmit(MEANForm)">
+          <ion-input type="hidden" name='_id' #_id="ngModel" [(ngModel)]='selectedUser._id'></ion-input>
+          <ion-item>
+            <ion-label>Name : </ion-label>
+            <ion-input type="text" name="name" #name="ngModel" [(ngModel)]='selectedUser.name' placeholder="your name"
+              required>
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Email : </ion-label>
+            <ion-input type="email" name="email" #email="ngModel" [(ngModel)]='selectedUser.email' placeholder="your email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Phone : </ion-label>
+            <ion-input type="number" name="phone" #phone="ngModel" [(ngModel)]='selectedUser.phone' placeholder="your phone"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Country : </ion-label>
+            <ion-input type="text" name="country" #country="ngModel" [(ngModel)]='selectedUser.country' placeholder="your country"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-button type="submit" [disabled]="!MEANForm.valid">Save</ion-button>
+            <ion-button (click)="resetForm(MEANForm)">Reset</ion-button>
+          </ion-item>
+          <ion-item>{{diagnostic}}</ion-item>
+        </form>
+      </ion-col>
+      <ion-col col-9>
+        <table border='2'>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Country</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tr *ngFor="let usr of users">
+            <td>{{usr.name}}</td>
+            <td>{{usr.email}}</td>
+            <td>{{usr.phone}}</td>
+            <td>{{usr.country}}</td>
+            <td>
+              <a (click)="onEdit(usr)">
+                <ion-icon name="open">Edit</ion-icon>
+              </a>
+              <a (click)="onDelete(usr._id,MEANForm)">
+                <ion-icon name="trash">Delete</ion-icon>
+              </a>
+            </td>
+          </tr>
+        </table>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

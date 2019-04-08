@@ -1,0 +1,38 @@
+<ion-header color="danger">
+  <ion-toolbar>
+    <ion-title>
+      Ionic MEAN Sign Up
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form #signUpForm="ngForm" (ngSubmit)="onSubmit(signUpForm)">
+    <ion-item>
+      <ion-input type="text" #fullName="ngModel" [(ngModel)]="selectedSubsciber.fullName" name="fullName" placeholder="Full Name"
+        required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" #email="ngModel" [(ngModel)]="selectedSubsciber.email" name="email" placeholder="Email"
+        required [pattern]="emailRegex"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="password" #password="ngModel" [(ngModel)]="selectedSubsciber.password" name="password"
+        placeholder="Password" minlength="4" maxlength="8" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-button type="submit" [disabled]="!signUpForm.valid">Sign Up</ion-button>
+      <ion-button (click)="formReset(signUpForm)">Clear</ion-button>
+    </ion-item>
+    <ion-item>{{diagnostic}}</ion-item>
+    <!-- Success message -->
+    <div class="success" *ngIf="showSucessMessage">
+      Saved successfully
+    </div>
+    <!-- Error message -->
+    <div class="alert" *ngIf="serverErrorMessages">
+      {{serverErrorMessages}}
+    </div>
+  </form>
+
+</ion-content>

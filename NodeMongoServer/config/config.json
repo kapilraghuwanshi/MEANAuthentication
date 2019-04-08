@@ -1,0 +1,14 @@
+{
+    "development": {
+        "PORT": 5555,
+        "MONGODB_URI": "mongodb://localhost:27017/MEAN_CRUD",
+        "JWT_SECRET": "Kapil@55Mean",
+        "JWT_EXP": "5m"
+    },
+    "production": {
+        "PORT": 80,
+        "MONGODB_URI": "mongodb://xxxxx/DB_Name",
+        "JWT_SECRET": "Kapil@55Mean",
+        "JWT_EXP": "5m"
+    }
+}
