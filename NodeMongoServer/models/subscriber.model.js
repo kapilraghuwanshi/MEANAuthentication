@@ -27,7 +27,7 @@ subscriberSchema.path('email').validate((val) => {
     return emailRegex.test(val);
 }, 'Your e-mail is Invalid.');
 
-// Pre Events before save
+// Mongoose Hooks - Pre Events before save
 subscriberSchema.pre('save', function (next) {
     console.log('inside pre save in subscriber.model.js ');
     // bcrypt to encrpy password and saltSecret
@@ -40,7 +40,7 @@ subscriberSchema.pre('save', function (next) {
     });
 });
 
-// Methods
+// Mongoose Custom Methods for full collection
 subscriberSchema.methods.verifyPassword = function (password) {
     console.log('inside verifyPassword in subscriber.model.js ');
     return bcrypt.compareSync(password, this.password);

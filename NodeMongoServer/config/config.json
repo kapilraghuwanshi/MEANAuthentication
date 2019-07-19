@@ -9,6 +9,6 @@
         "PORT": 80,
         "MONGODB_URI": "mongodb://xxxxx/DB_Name",
         "JWT_SECRET": "Kapil@55Mean",
-        "JWT_EXP": "5m"
+        "JWT_EXP": "2m"
     }
 }

@@ -32,7 +32,7 @@ module.exports.authenticate = (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
         // error from passport middleware
         if (err) return res.status(400).json(err);
-        // registered user
+        // registered user and send the JWT token to this user's request
         else if (user) return res.status(200).json({ "token": user.generateJwt() });
         // unknown user or wrong password
         else return res.status(404).json(info);
